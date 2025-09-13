@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FlaskP - Frontend Form</title>
+</head>
+<body>
+  <h1>Submit Data to Flask Backend</h1>
+
+  <!-- Directly POST to Flask service (CORS must allow), or POST to /submit which proxies -->
+  <!-- Option A: Direct form POST to backend (uncomment to use) -->
+  <!--
+  <form action="http://localhost:5000/submit" method="post">
+    ...
+  </form>
+  -->
+
+  <!-- Option B (default): submit to Express which forwards to Flask -->
+  <form id="mainForm" method="post" action="/submit">
+    <label>
+      Name:
+      <input type="text" name="name" required>
+    </label><br><br>
+    <label>
+      Email:
+      <input type="email" name="email" required>
+    </label><br><br>
+    <label>
+      Message:<br>
+      <textarea name="message" rows="5" cols="40" required></textarea>
+    </label><br><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <script>
+    // Optional: Ajax submit for better UX (keeps example simple, non-AJAX default works)
+    const form = document.getElementById('mainForm');
+    form.addEventListener('submit', async (e) => {
+      // allow normal form submit; remove this handler if you prefer standard post
+    });
+  </script>
+</body>
+</html>

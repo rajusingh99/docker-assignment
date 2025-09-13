@@ -1,15 +1,18 @@
-# backend/Dockerfile
+# Use lightweight Python image
 FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
-COPY requirements.txt ./
+
+# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy backend source code
 COPY . .
 
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
+# Expose Flask/Gunicorn port
 EXPOSE 5000
 
-# Use gunicorn in production container
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app", "--workers", "2"]
+# Run with Gunicorn (production-ready)
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

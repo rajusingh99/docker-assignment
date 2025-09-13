@@ -1,16 +1,14 @@
-# node
-/frontend/node_modules
-/frontend/npm-debug.log
-/frontend/yarn-error.log
+# Node.js
+frontend/node_modules
+frontend/package-lock.json
 
-# python
-/backend/__pycache__/
+# Python
+backend/__pycache__/
 backend/*.pyc
-backend/*.pyo
-backend/.pytest_cache
+backend/venv/
 
-# general / editor
-.vscode/
-.DS_Store
-.env
+# Env files
 *.env
+
+# VSCode
+.vscode/

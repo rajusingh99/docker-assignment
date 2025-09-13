@@ -1,11 +1,13 @@
 const express = require('express');
+require("dotenv").config();  // load .env variables
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch'); // installed for server-side requests if needed
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const FLASK_BACKEND_URL = process.env.FLASK_BACKEND_URL || 'http://backend:5000';
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,7 +27,6 @@ app.post('/submit', async (req, res) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body)
     });
-
     const resultHtml = await response.text();
     // send backend response html as-is
     res.send(resultHtml);
@@ -35,6 +36,7 @@ app.post('/submit', async (req, res) => {
   }
 });
 
+
 app.listen(PORT, () => {
-  console.log(`Frontend running on port ${PORT}`);
-});
+  console.log(`Frontend running at http://localhost:${PORT}`);
+})
